@@ -1,0 +1,17 @@
+.navbar-custom{
+    background-color: #2196F3;
+    box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+}
+
+.navbar-link,
+.navbar-toggler-icon{
+    color: white;
+    font-size: 20px;
+    /* font-weight: bold; */
+    transition: all 0.3s;
+    /* cursor: pointer; */
+}
+
+.navbar-link:hover{
+    transform: scale(1.1);
+}

@@ -1,0 +1,53 @@
+<div class="d-flex flex-column justify-content-center align-items-center w-100 h-100">
+    <h1>Sign In</h1>
+    <div class="d-flex w-75 h-75 login-box">
+        <div class="d-flex flex-column justify-content-center align-items-center h-100 w-50">
+            <h1>Hello!</h1>
+            <h3>Sing into your account</h3>
+
+            <form  class="w-50" (ngSubmit)="OnLogin()">
+                <div class = "form-row mt-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" style="background-color: white;">
+                            <i class="fas fa-user"></i>
+                          </span>
+                        </div>
+                        <input type="text" class="form-control" id="username" 
+                        placeholder="username">
+                    </div>
+                </div>
+
+                <div class = "form-row mt-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" style="background-color: white;">
+                            <i class="fas fa-american-sign-language-interpreting"></i>
+                          </span>
+                        </div>
+                        <input type="password" class="form-control" id="password" 
+                        placeholder="password">
+                    </div>
+                </div>
+
+                <div class = "form-row mt-3 justify-content-center">
+                    <button type="submit" class="btn btn-primary">
+                        Sign In
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center h-100 w-50" 
+        style="background-color: #2196F3; padding: 20px;">
+            <h1>
+                MedicalAssistant
+            </h1>
+            <p style="text-align: center;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius vestibulum vulputate. 
+                Sed enim lacus, mattis nec aliquam non, cursus vel leo. Vestibulum sit amet turpis tempor, 
+                auctor odio iaculis, blandit nisl. Fusce ut facilisis erat, vitae tincidunt nulla. 
+            </p>
+        </div>
+    </div>
+
+</div>
