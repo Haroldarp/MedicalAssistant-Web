@@ -1,4 +1,15 @@
+.custom-container{
+    min-height: calc(100% - 54px);
+}
+
 .sidebar{
     background-color: #BBDEFB;
     box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+    position: fixed;
+    width: 300px;
+}
+
+.content{
+    margin-left: 300px;
+    width: calc(100% - 300px);
 }
