@@ -3,8 +3,8 @@
 }
 
 .sidebar{
-    background-color: #BBDEFB;
-    box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+    background-color: #64B5F6;
+    box-shadow: 0 0 15px rgba(194, 177, 177, 0.3);
     position: fixed;
     width: 300px;
 }
@@ -12,4 +12,24 @@
 .content{
     margin-left: 300px;
     width: calc(100% - 300px);
+}
+
+.add-btn{
+    cursor: pointer;
+}
+
+/* .mat-row:nth-child(even){
+    background-color: red;
+}
+        
+.mat-row:nth-child(odd){
+    background-color: blue;
+} */
+
+.mat-header-row{
+    background-color: coral;
+}
+
+.mat-header-cell{
+    color: black;
 }

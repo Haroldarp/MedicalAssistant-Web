@@ -1,1 +1,21 @@
-<p>admin-profile-page works!</p>
+<app-navbar [SearchBar]="true"></app-navbar>
+<div class="d-flex custom-container">
+    <div class="d-flex flex-column align-items-center h-100 py-3 px-3 sidebar">
+        <img src="../../../assets/images/defaultImage.png" width="150px" height="150px">
+        <div class="d-flex flex-column align-items-start" style="width: 150px;">
+            <p class="mt-2"><span class="font-weight-bold">Name: </span>Nombre</p>
+            <p class="mt-2"><span class="font-weight-bold">Age: </span>Edad</p>
+        </div>
+    </div>
+    <div class="d-flex flex-column px-5 py-5 content">
+        <div class="d-flex mb-4">
+            <a class="mx-2 custom-btn" (click)="onFormChange('Patient')">Create Patient</a>
+            <a class="mx-2 custom-btn" (click)="onFormChange('Doctor')">Create Doctor</a>
+            <a class="mx-2 custom-btn" >Create Secretary</a>
+        </div>
+        <div style="width: 100%;" [ngSwitch]="form">
+            <app-create-doctor-form *ngSwitchCase="'Doctor'" style="width: 100%;"></app-create-doctor-form>
+            <app-create-patient-form *ngSwitchCase="'Patient'" style="width: 100%;"></app-create-patient-form>
+       </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-admin-profile-page',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminProfilePageComponent implements OnInit {
 
-  constructor() { }
+  public form: string;
+  constructor() { 
+    this.form = "Patient";
+  }
 
   ngOnInit(): void {
+  }
+
+  onFormChange(formString: string){
+    this.form = formString;
   }
 
 }

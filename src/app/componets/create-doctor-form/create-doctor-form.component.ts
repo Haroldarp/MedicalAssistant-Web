@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validator, Validators, FormControl} from '@angular/forms'
 
+import {MatDialog} from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+
+import {confirmPassword} from '../../Validations/validators';
 
 @Component({
   selector: 'app-create-doctor-form',
@@ -9,10 +13,15 @@ import {FormGroup, FormBuilder, Validator, Validators, FormControl} from '@angul
 })
 export class CreateDoctorFormComponent implements OnInit {
 
-  public doctorFrom: FormGroup;
+  public form: FormGroup;
+  public submited: boolean;
 
-  constructor(private fb:FormBuilder) {
-    this.doctorFrom = this.formInit();
+  constructor(
+    private fb:FormBuilder,
+    private dialog: MatDialog
+    ) {
+    this.form = this.formInit();
+    this.submited = false;
   }
 
   ngOnInit(): void {
@@ -26,15 +35,29 @@ export class CreateDoctorFormComponent implements OnInit {
       lastName: new FormControl('',{validators:[ Validators.required]}),
       sex: new FormControl('',{validators:[ Validators.required]}),
       birthDate : new FormControl('',{validators:[ Validators.required]}),
-      id : new FormControl('',{validators:[ ]}),
+      id : new FormControl('',{validators:[ Validators.required]}),
       speciality: new FormControl('',{validators:[]}),
-      subSpeciality: new FormControl('',{validators:[ ]})
-    });
+      subSpeciality: new FormControl('',{validators:[ ]}),
+      userName: new FormControl('',{validators:[ Validators.required]}),
+      email: new FormControl('',{validators:[ Validators.required]}),
+      password: new FormControl('',{validators:[ Validators.required]}),
+      confirmPassword: new FormControl('',{validators:[ Validators.required]})
+    }, {validators: confirmPassword });
 
   }
 
   OnSubmit(){
-    console.log(this.doctorFrom.value);
+    this.submited = true;
+    console.log(this.form.value);
+
+    if(this.form.invalid){
+      const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Error", 
+      content:`Missing fields or validation errors!`}, width: '400px'});
+
+    }else{
+      const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Saved", 
+              content:`Doctor user was saved!`}, width: '400px'});
+    }
   }
 
 }

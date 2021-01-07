@@ -2,3 +2,22 @@
     background-color: #2196F3;
     box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
 }
+
+.navbar-link,
+.navbar-toggler-icon,
+.logout-icon{
+    color: white;
+    font-size: 20px;
+    transition: all 0.3s;
+}
+
+.logout-icon{
+    cursor: pointer;
+}
+.navbar-link:hover,
+.logout-icon:hover{
+    transform: scale(1.1);
+}
+
+
+

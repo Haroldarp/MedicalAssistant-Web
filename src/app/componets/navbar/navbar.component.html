@@ -7,6 +7,7 @@
     <input *ngIf="SearchBar" type="text" class="form-control mx-auto w-50" placeholder="Search" 
     style="border-radius: 50px;">
     
-    <a>Log out</a>
+    <fa-icon [icon]="faSignOutAlt" [routerLink]="['']" class="logout-icon ml-auto"></fa-icon>
+    <a class="nav-link navbar-link mx-1" [routerLink]="['']">Log out</a>
   </div>
 </nav>

@@ -2,25 +2,19 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import {TableInfo} from '../../models/tableInfo';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+const ELEMENT_DATA: TableInfo[] = [
+  new TableInfo({id: 1, title: 'titulo 1', description: 'description sjdvhbskjbdkjdksbdns jhs skj havs gvsj dsyb sdvh jbsd h jsvhdb sjvhd shvsd sjdhv sdj gc 1', patient: 'patient name 1', archiveLink: 'archiveLink 1', date: new Date()}),
+  new TableInfo({id: 2, title: 'titulo 2', description: 'description 2', patient: 'patient name 2', archiveLink: 'archiveLink 2', date: new Date()}),
+  new TableInfo({id: 3, title: 'titulo 3', description: 'description 3', doctor: 'patient name 3', archiveLink: 'archiveLink 3', date: new Date()}),
+  new TableInfo({id: 4, title: 'titulo 4', description: 'description 4', doctor: 'patient name 4', archiveLink: 'archiveLink 4', date: new Date()}),
+  new TableInfo({id: 5, title: 'titulo 5', description: 'description 5', doctor: 'patient name 5', archiveLink: 'archiveLink 5', date: new Date()}),
+  new TableInfo({id: 6, title: 'titulo 6', description: 'description 6', patient: 'patient name 6', archiveLink: 'archiveLink 6', date: new Date()}),
+  new TableInfo({id: 7, title: 'titulo 7', description: 'description 7', patient: 'patient name 7', archiveLink: 'archiveLink 7', date: new Date()}),
+  new TableInfo({id: 8, title: 'titulo 8', description: 'description 8', patient: 'patient name 8', archiveLink: 'archiveLink 8', date: new Date()}),
+  new TableInfo({id: 9, title: 'titulo 9', description: 'description 9', patient: 'patient name 9', archiveLink: 'archiveLink 9', date: new Date()}),
+  new TableInfo({id: 10, title: 'titulo 10', description: 'description 10', patient: 'patient name 10', archiveLink: 'archiveLink 10', date: new Date()})
 ];
 
 @Component({
@@ -30,8 +24,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class PatientProfilePageComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['id', 'title', 'description', 'related', 'archiveLink', 'date'];
+  dataSource = new MatTableDataSource<TableInfo>(ELEMENT_DATA);
+
 
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort!: MatSort;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login-page',
@@ -10,7 +10,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 export class LoginPageComponent implements OnInit {
 
   faUser = faUser;
-  
+  faLock = faLock;
+
   constructor(
     private _router:Router
   ) { }

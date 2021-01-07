@@ -19,6 +19,7 @@ import { CreateDoctorFormComponent } from './componets/create-doctor-form/create
 import { AdminProfilePageComponent } from './componets/admin-profile-page/admin-profile-page.component';
 import { SecretaryProfilePageComponent } from './componets/secretary-profile-page/secretary-profile-page.component';
 import { HomePageComponent } from './componets/home-page/home-page.component';
+import { DialogComponent } from './componets/dialog/dialog.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { HomePageComponent } from './componets/home-page/home-page.component';
     CreatePatientFormComponent,
     CreateDoctorFormComponent,
     SecretaryProfilePageComponent,
-    AdminProfilePageComponent
+    AdminProfilePageComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import { HomePageComponent } from './componets/home-page/home-page.component';
     HttpClientModule,
     FontAwesomeModule
   ],
+  entryComponents: [DialogComponent],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
