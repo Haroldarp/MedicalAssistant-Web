@@ -1,5 +1,43 @@
+@font-face{
+    font-family: "Roboto Regular";
+    src: url("../../../assets/fonts/RobotoSlab-Regular.ttf");
+}
+
+.roboto-font{
+    font-family: "Roboto Regular";
+}
+
+.background{
+    background-image:  url("../../../assets/images/login-backgound.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    position: relative;
+}
+
 .login-box{
     box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
     border-radius: 50px;
     overflow: hidden;
+}
+
+.error{
+    font-weight: bold;
+    color: red;
+}
+
+.title{
+    font-size: 3vw;
+    line-height: 3vw;
+    color: white;
+}
+
+.ligth-text{
+    color: white;
+}
+
+.sign-text{
+    font-size: 50px;
+    line-height: 50px;
 }

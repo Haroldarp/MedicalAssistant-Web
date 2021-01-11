@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
+import { faUserMd, faUserInjured, faUserTie } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-admin-profile-page',
@@ -8,16 +10,13 @@ import { from } from 'rxjs';
 })
 export class AdminProfilePageComponent implements OnInit {
 
-  public form: string;
-  constructor() { 
-    this.form = "Patient";
-  }
+  faUserMd = faUserMd;
+  faUserInjured = faUserInjured;
+  faUserTie = faUserTie;
+
+  constructor() {}
 
   ngOnInit(): void {
-  }
-
-  onFormChange(formString: string){
-    this.form = formString;
   }
 
 }

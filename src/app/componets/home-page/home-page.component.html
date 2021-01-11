@@ -1,12 +1,136 @@
-<nav class="navbar navbar-light sticky-top navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand lobster-font"[routerLink]="['']">
             MedicalAssistant
         </a>
-        <div class = "navbar-nav ml-auto">
-            <a class="nav-link navbar-link mx-1" [routerLink]="['/Login']">
-                Sing In
-            </a>
-        </div> 
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+
+        <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+            <div class="navbar-nav w-100">
+                <a class="nav-link navbar-link ml-auto roboto-font" [routerLink]="['/Login']">
+                    Sign In
+                </a>
+            </div>
+        </div>
     </div>
 </nav>
+<div class="w-100 margin"></div>
+
+<header>
+    <div class = "background">
+        <div class="overlay row h-100 mx-0 justify-content-center align-items-center">
+            <div class="col-md-8 d-flex flex-column justify-content-center align-items-center">
+                <h1 class="text-center mb-3 title roboto-font">Medical History</h1>
+                <p class="text-center mb-4 sub-title roboto-font">save your patient's medical history here</p>
+                <a type="button" class="btn btn-primary px-5 py-2 roboto-font" [routerLink]="['/Login']">Entrar</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="page-section">
+    <div class="container ">
+        <div class="text-center mb-5">
+            <h2 class="text-uppercase m-0 roboto-font">Services</h2>
+            <h3 class="text-muted roboto-font">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
+        <div class="row text-center">
+            <div class="col-md">
+                <fa-stack style="font-size: 80px;">
+                    <fa-icon [icon]="faCircle" stackItemSize="2x" class="blue-icon"></fa-icon>
+                    <fa-icon [icon]="faCloudUploadAlt" stackItemSize="1x" class="white-icon"></fa-icon>
+                </fa-stack>
+                <h3 class="my-3 roboto-font">Save Consultation</h3>
+                <p class="text-muted roboto-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+            </div>
+            <div class="col-md">
+                <fa-stack style="font-size: 80px;">
+                    <fa-icon [icon]="faCircle" stackItemSize="2x" class="blue-icon"></fa-icon>
+                    <fa-icon [icon]="faUserInjured" stackItemSize="1x" class="white-icon"></fa-icon>
+                </fa-stack>
+                <h3 class="my-3 roboto-font">See Patients Profile</h3>
+                <p class="text-muted roboto-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+            </div>
+            <div class="col-md">
+                <fa-stack style="font-size: 80px;">
+                    <fa-icon [icon]="faCircle" stackItemSize="2x" class="blue-icon"></fa-icon>
+                    <fa-icon [icon]="faClock" stackItemSize="1x" class="white-icon"></fa-icon>
+                </fa-stack>
+                <h3 class="my-3 roboto-font">Full Time Accessibility</h3>
+                <p class="text-muted roboto-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="text-uppercase m-0 roboto-font">Our Team</h2>
+            <h3 class="text-muted roboto-font"> We are a developers team from INTEC</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-lg">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="../../../assets/images/team/Harold.jpg"/>
+                    <h4 class="mt-3 mb-1 roboto-font">Harold Roddriguez</h4>
+                    <p class="text-muted roboto-font">Web developer</p>
+                </div>
+            </div>
+            <div class="col-lg">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="../../../assets/images/team/Kelvin.jpeg"/>
+                    <h4 class="mt-3 mb-1 roboto-font">Kelvin lee</h4>
+                    <p class="text-muted roboto-font">API developer</p>
+                </div>
+            </div>
+            <div class="col-lg">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="../../../assets/images/team/Frank.jpeg"/>
+                    <h4 class="mt-3 mb-1 roboto-font">Frank Chavez</h4>
+                    <p class="text-muted roboto-font">API developer</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="page-section contact-us">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2 class="text-uppercase ligth-text m-0 roboto-font">Contact Us</h2>
+                <hr class="divider my-1">
+                <h3 class="ligth-text roboto-font">Give us a call or send us an email and we will get back to you as soon as possible!</h3>
+            </div>
+        </div>
+
+        <div class="row text-center justify-content-center">
+            <div class="col-lg-4">
+                <fa-icon [icon]="faPhone" class="white-icon contact-us-icons"></fa-icon>
+                <p class="ligth-text mt-1 roboto-font">+1 (809) 000 0000</p>
+            </div>
+            <div class="col-lg-4">
+                <fa-icon [icon]="faEnvelope" class="white-icon contact-us-icons"></fa-icon>
+                <p class="ligth-text mt-1 roboto-font">medicalasistant@mail.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-3 footer">
+    <div class="container">
+        <div class="text-center">
+            <p class="ligth-text roboto-font">
+                Copyright © {{date}} - MedicalAssistant
+            </p>
+        </div>
+    </div>
+</section>

@@ -20,6 +20,8 @@ import { AdminProfilePageComponent } from './componets/admin-profile-page/admin-
 import { SecretaryProfilePageComponent } from './componets/secretary-profile-page/secretary-profile-page.component';
 import { HomePageComponent } from './componets/home-page/home-page.component';
 import { DialogComponent } from './componets/dialog/dialog.component';
+import { ConsultationTableComponent } from './componets/consultation-table/consultation-table.component';
+import { AddConsultationFormComponent } from './componets/add-consultation-form/add-consultation-form.component';
 
 
 @NgModule({
@@ -32,8 +34,10 @@ import { DialogComponent } from './componets/dialog/dialog.component';
     HomePageComponent,
     CreatePatientFormComponent,
     CreateDoctorFormComponent,
+    AddConsultationFormComponent,
     SecretaryProfilePageComponent,
     AdminProfilePageComponent,
+    ConsultationTableComponent,
     DialogComponent
   ],
   imports: [

@@ -85,6 +85,10 @@
                     ID is required
                 </div>
 
+                <div *ngIf="form.get('id')?.errors?.min || form.get('id')?.errors?.max">
+                    ID must be 11 characters long
+                </div>
+
             </div>
         </div>
     </div>
@@ -169,7 +173,7 @@
     </div>
 
     <div class="form-row mb-4 justify-content-end">
-        <button type="button" class="btn btn-danger mx-3">Cancel</button>
+        <button type="button" class="btn btn-danger mx-3" (click)="OnCancel()">Cancel</button>
         <button type="submit" class="btn btn-primary">Save</button>
     </div>
 </form>

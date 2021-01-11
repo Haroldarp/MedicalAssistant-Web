@@ -35,7 +35,7 @@ export class CreateDoctorFormComponent implements OnInit {
       lastName: new FormControl('',{validators:[ Validators.required]}),
       sex: new FormControl('',{validators:[ Validators.required]}),
       birthDate : new FormControl('',{validators:[ Validators.required]}),
-      id : new FormControl('',{validators:[ Validators.required]}),
+      id : new FormControl('',{validators:[ Validators.required, Validators.min(10000000000), Validators.max(99999999999)]}),
       speciality: new FormControl('',{validators:[]}),
       subSpeciality: new FormControl('',{validators:[ ]}),
       userName: new FormControl('',{validators:[ Validators.required]}),
@@ -57,7 +57,12 @@ export class CreateDoctorFormComponent implements OnInit {
     }else{
       const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Saved", 
               content:`Doctor user was saved!`}, width: '400px'});
+      this.submited = false;
     }
+  }
+
+  OnCancel(){
+    this.form = this.formInit();
   }
 
 }

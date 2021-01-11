@@ -1,13 +1,22 @@
-<nav class="navbar navbar-light sticky-top navbar-custom">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
+    <a class="navbar-brand lobster-font" href="#">
       MedicalAssistant
     </a>
 
-    <input *ngIf="SearchBar" type="text" class="form-control mx-auto w-50" placeholder="Search" 
-    style="border-radius: 50px;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+      <div class="navbar-nav w-100">
+        <input *ngIf="SearchBar" type="text" class="form-control mx-auto w-50" placeholder="Search" 
+          style="border-radius: 50px;">
     
-    <fa-icon [icon]="faSignOutAlt" [routerLink]="['']" class="logout-icon ml-auto"></fa-icon>
-    <a class="nav-link navbar-link mx-1" [routerLink]="['']">Log out</a>
-  </div>
+        <a class="logout-icon ml-auto my-auto">
+          <fa-icon [icon]="faSignOutAlt" [routerLink]="['']"></fa-icon>
+        </a>
+      </div>
+    </div>
+
 </nav>
+<div class="w-100 margin"></div>

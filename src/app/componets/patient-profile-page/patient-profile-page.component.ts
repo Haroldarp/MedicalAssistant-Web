@@ -22,30 +22,14 @@ const ELEMENT_DATA: TableInfo[] = [
   templateUrl: './patient-profile-page.component.html',
   styleUrls: ['./patient-profile-page.component.css']
 })
-export class PatientProfilePageComponent implements OnInit, AfterViewInit {
+export class PatientProfilePageComponent implements OnInit{
 
-  displayedColumns: string[] = ['id', 'title', 'description', 'related', 'archiveLink', 'date'];
   dataSource = new MatTableDataSource<TableInfo>(ELEMENT_DATA);
-
-
-  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort!: MatSort;
 
   constructor() { }
 
   ngOnInit(): void {
     
-  }
-
-  ngAfterViewInit(){
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    console.log(filterValue);
-    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

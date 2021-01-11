@@ -1,6 +1,6 @@
 <h1>Create Patient User</h1>
 
-<form class="col-md-12" (ngSubmit)="OnSubmit()" [formGroup]="form">
+<form novalidate class="col-md-12" (ngSubmit)="OnSubmit()" [formGroup]="form">
     <div class="form-row">
         <div class="form-group col-md text-center">
             <img src="../../../assets/images/defaultImage.png" width="70%">
@@ -77,7 +77,20 @@
         </div>
         <div class="form-group col-md">
             <label>ID</label>
-            <input type="text" class="form-control" id="id" formControlName = "id">
+            <input type="number" class="form-control" id="id" formControlName = "id">
+            <div *ngIf="(form.get('id')?.dirty || form.get('id')?.touched
+             || submited) && isAdult" 
+                class="w-100 justify-content-center text-center error">
+                    
+                <div *ngIf="form.errors?.idRequired">
+                    ID is required
+                </div>
+
+                <div *ngIf="form.get('id')?.errors?.min || form.get('id')?.errors?.max">
+                    ID must be 11 characters long
+                </div>
+
+            </div>
         </div>
     </div>
 
@@ -85,10 +98,32 @@
         <div class="form-group col-md">
             <label>Tutor Name</label>
             <input type="text" class="form-control" id="tutorName" formControlName = "tutorName">
+            <div *ngIf="(form.get('tutorName')?.dirty || form.get('tutorName')?.touched
+             || submited) && !isAdult" 
+                class="w-100 justify-content-center text-center error">
+                    
+                <div *ngIf="form.errors?.tutorNameRequired">
+                    Tutor name is required
+                </div>
+
+            </div>
         </div>
         <div class="form-group col-md">
             <label>Tutor ID</label>
-            <input type="text" class="form-control" id="TutorId" formControlName = "tutorId">
+            <input type="number" class="form-control" id="TutorId" formControlName = "tutorId">
+            <div *ngIf="(form.get('tutorId')?.dirty || form.get('tutorId')?.touched
+             || submited) && !isAdult" 
+                class="w-100 justify-content-center text-center error">
+                    
+                <div *ngIf="form.errors?.tutorIdRequired">
+                    Tutor ID is required
+                </div>
+
+                <div *ngIf="form.get('tutorId')?.errors?.min || form.get('tutorId')?.errors?.max">
+                    ID must be 11 characters long
+                </div>
+
+            </div>
         </div>
     </div>
 
@@ -138,7 +173,7 @@
                     Password is required
                 </div>
 
-                <div *ngIf="form.errors?.EqualPassword && 
+                <div *ngIf="form.errors?.equalPassword && 
                 (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched) ">
                     passwords must be the same 
                 </div>
@@ -156,7 +191,7 @@
                     Confirm Password is required
                 </div>
 
-                <div *ngIf="form.errors?.EqualPassword && 
+                <div *ngIf="form.errors?.equalPassword && 
                 (form.get('password')?.dirty || form.get('password')?.touched) ">
                     passwords must be the same 
                 </div>
@@ -166,7 +201,7 @@
     </div>
 
     <div class="form-row mb-4 justify-content-end">
-        <button type="button" class="btn btn-danger mx-3">Cancel</button>
+        <button type="button" class="btn btn-danger mx-3" (click)="OnCancel()">Cancel</button>
         <button type="submit" class="btn btn-primary">Save</button>
     </div>
 </form>
