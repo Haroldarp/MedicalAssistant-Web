@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormGroup, FormBuilder, Validator, Validators, FormControl} from '@angular/forms'
 
 import {MatDialog} from '@angular/material/dialog';
@@ -16,16 +16,23 @@ export class CreateDoctorFormComponent implements OnInit {
   public form: FormGroup;
   public submited: boolean;
 
+  @ViewChild("speciality") specialityRef:any;
+  @ViewChild("subSpeciality") subSpecialityRef:any;
+
+  public specialities: any[];
+  public subSpecialities: any[];
   constructor(
     private fb:FormBuilder,
     private dialog: MatDialog
     ) {
     this.form = this.formInit();
     this.submited = false;
+
+    this.specialities = [{id:1,value:"cirugia"},{id:2,value:"odontologia"}]
+    this.subSpecialities = [{id:1,value:"cirugia plastica"},{id:2,value:"dento"}]
   }
 
   ngOnInit(): void {
-
   }
 
   formInit(): FormGroup{
@@ -63,6 +70,10 @@ export class CreateDoctorFormComponent implements OnInit {
 
   OnCancel(){
     this.form = this.formInit();
+  }
+
+  onChange(){
+    
   }
 
 }

@@ -9,11 +9,28 @@
 
     <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
       <div class="navbar-nav w-100">
-        <input *ngIf="SearchBar" type="text" class="form-control mx-auto w-50" placeholder="Search" 
-          style="border-radius: 50px;">
+
+        <form class=" mx-auto w-50" 
+        (ngSubmit)="onSearch()" [formGroup]="form">
+
+          <div class="input-search d-flex w-100">
+            <input *ngIf="SearchBar" type="text" class="form-control" placeholder="Search" 
+              style="border-radius: 50px;"
+              formControlName = "username"
+              [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let patient of filteredPatients | async" [value]="patient">
+                {{patient.value}}
+              </mat-option>
+            </mat-autocomplete>
+  
+            <button type="submit" class="btn btn-costume px-3" ><fa-icon [icon]="faSearch"></fa-icon></button>
+          </div>
+
+        </form>
     
-        <a class="logout-icon ml-auto my-auto">
-          <fa-icon [icon]="faSignOutAlt" [routerLink]="['']"></fa-icon>
+        <a class="logout-icon ml-auto my-auto" (click)="onLogout()">
+          <fa-icon [icon]="faSignOutAlt"></fa-icon>
         </a>
       </div>
     </div>

@@ -42,4 +42,28 @@
 }
 
 
+.input-search{
+    border-radius: 25px;
+    order: 1px solid #ced4da;
+    background: white;
+}
+
+.input-search input{
+    border: 0px;
+    background: transparent;
+    width: 100%;
+}
+
+.input-search .form-control:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+
+.btn-costume{
+ background-color: transparent;
+ border: 0px;
+}
+
+
 

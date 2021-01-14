@@ -64,9 +64,9 @@ export class AddConsultationFormComponent implements OnInit {
     if(event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       this.fileName = file.name;
-      this.form.patchValue({
-            file: file
-      });
+      // this.form.patchValue({
+      //       file: file
+      // });
       
       // console.log("yes");
       // console.log(file.name);
@@ -74,12 +74,12 @@ export class AddConsultationFormComponent implements OnInit {
       // console.log(file);
       // console.log(event.target.files[0]);
       
-      // reader.readAsDataURL(file);
-      // reader.onload = () => {
-      //   this.form.patchValue({
-      //     file: reader.result
-      //  });
-      // };
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.form.patchValue({
+          file: reader.result
+       });
+      };
     }
   }
 
