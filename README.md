@@ -1,27 +1,14 @@
-# MedicalAssistantWeb
+# MedicalAssistant
+## Home Page
+<img src="images/Home1.png" width="500px"/> <img src="images/Home2.png" width="500px"/>
+<img src="images/Home3.png" width="500px"/> <img src="images/Home4.png" width="500px"/>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
+## Admin Profile
+<img src="images/AdminProfile1.png" width="500px"/> <img src="images/AdminProfile2.png" width="500px"/>
+<img src="images/AdminProfile3.png" width="500px"/> <img src="images/AdminProfile4.png" width="500px"/>
 
-## Development server
+## Doctor Profile
+<img src="images/DoctorProfile1.png" width="500px"/> <img src="images/DoctorProfile2.png" width="500px"/>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Patient Profile
+<img src="images/PatienteProfile.png" width="500px"/>
