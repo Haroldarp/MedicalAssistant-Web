@@ -9,6 +9,7 @@ import { ConsultationRequest } from 'src/app/models/consultation';
 import {AppState, selectPatient, selectDoctor} from '../../store';
 import {Store, select} from '@ngrx/store';
 import * as fromActions from '../../store/app.actions';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-add-consultation-form',
@@ -23,6 +24,11 @@ export class AddConsultationFormComponent implements OnInit {
 
   public doctorId: any;
 
+  public patientId: any = "";
+  patient:any;
+  public filteredPatients: Observable<any[]>;
+
+
   constructor(
     private fb:FormBuilder,
     private dialog: MatDialog,
@@ -33,6 +39,8 @@ export class AddConsultationFormComponent implements OnInit {
     this.form = this.formInit();
     this.submited = false;
     this.fileName = "Choose file";
+    this.filteredPatients = of([]);
+
 
     this.store.pipe(select(selectDoctor)).subscribe(
       result =>{ 
@@ -68,7 +76,7 @@ export class AddConsultationFormComponent implements OnInit {
     }else{
       const {title, description, patient, file} = this.form.value;
       var consultation: ConsultationRequest = {titulo: title, descripcion:description, 
-        paciente: patient, archivo: file, fecha: this.formatDate(new Date()), doctor: this.doctorId};
+        paciente: this.patientId, archivo: file, fecha: this.formatDate(new Date()), doctor: this.doctorId};
 
 
       this._requestService.saveConsultation(consultation).subscribe(
@@ -122,6 +130,19 @@ export class AddConsultationFormComponent implements OnInit {
         day = '0' + day;
 
     return [year, month, day].join('-');
+  }
+
+  onKeypress(event:any){
+    this.filteredPatients = this._requestService.getPatientsByUsername(event.target.value);
+  }
+
+  displayFn(auto:any): string {
+      return auto ? auto.usuario : auto;
+  }
+
+  setUserId(){
+    this.patientId = this.patient?.id;
+    console.log(this.patientId);
   }
   
 

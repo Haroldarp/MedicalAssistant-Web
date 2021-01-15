@@ -110,7 +110,7 @@ export class NavbarComponent implements OnInit {
       return auto ? auto.usuario : auto;
   }
 
-  setProject(){
+  setUserId(){
     this.userId = this.searchValue?.id;
   }
 

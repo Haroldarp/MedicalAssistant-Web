@@ -19,7 +19,7 @@
               style="border-radius: 50px;"
               formControlName = "username"
               (keyup) = "onKeypress($event)"
-              [(ngModel)]="searchValue" (ngModelChange)="setProject()"
+              [(ngModel)]="searchValue" (ngModelChange)="setUserId()"
               [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
               <mat-option *ngFor="let patient of filteredPatients | async" [value]="patient">
