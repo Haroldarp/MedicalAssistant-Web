@@ -44,9 +44,16 @@ export class RequestService {
     return this._http.post(`${this.baseUrl}/logout` , {headhers: headers});
   }
 
+
   getPatientsByUsername(username:any):Observable<PatientResponseSearch[]>{
     console.log(`${this.baseUrl}/search_patients/${username}`);
-    return this._http.get<PatientResponseSearch[]>(`${this.baseUrl}/search_patients/${username}`, {withCredentials: true} )
+    
+    let params = JSON.stringify({searchText: username});
+
+    let headers = new HttpHeaders()
+    .set('Content-Type','application/json');
+
+    return this._http.post<PatientResponseSearch[]>(`${this.baseUrl}/search_patients`,params, {headers: headers} )
   }
 
   getPatientById(idPatient:any):Observable<PatientResponse>{

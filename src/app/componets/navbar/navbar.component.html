@@ -18,10 +18,12 @@
             <input *ngIf="SearchBar" type="text" class="form-control" placeholder="Search" 
               style="border-radius: 50px;"
               formControlName = "username"
+              (keyup) = "onKeypress($event)"
+              [(ngModel)]="searchValue" (ngModelChange)="setProject()"
               [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
               <mat-option *ngFor="let patient of filteredPatients | async" [value]="patient">
-                {{patient.value}}
+                {{patient.usuario}}
               </mat-option>
             </mat-autocomplete>
   

@@ -8,6 +8,10 @@ import { RequestService } from 'src/app/services/request.service';
 import { UserRequest } from 'src/app/models/userRequest';
 import { PatientResponse } from 'src/app/models/patient';
 
+import {AppState} from '../../store';
+import {Store} from '@ngrx/store';
+import * as fromActions from '../../store/app.actions';
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -22,10 +26,13 @@ export class LoginPageComponent implements OnInit {
     private _router:Router,
     private fb:FormBuilder,
     private dialog: MatDialog,
-    private _requestService: RequestService
+    private _requestService: RequestService,
+    private store: Store<AppState>
   ) {
       this.form = this.formInit();
       this.submited = false;
+
+      this.store.dispatch(fromActions.logoutSucess());
    }
 
   ngOnInit(): void {

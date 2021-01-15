@@ -76,6 +76,11 @@ export const selectDoctor = createSelector(
   (state: AppState) => state.doctor
 );
 
+export const selectAll = createSelector(
+  selectAppStateFeature,
+  (state: AppState) => state
+);
+
 export const selectactualPatientSearch = createSelector(
   selectAppStateFeature,
   (state: AppState) => state.actualPatientSearch

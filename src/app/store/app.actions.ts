@@ -15,7 +15,7 @@ export const loadDoctorSuccess = createAction(
 
 export const loadActualPatientSearch = createAction(
   '[App] actual patinet Success',
-  props<{ actualPatientSearch: any }>()
+  props<{ actualPatientSearch: number }>()
 );
 
 export const logoutSucess = createAction(

@@ -5,10 +5,10 @@ import {startWith, map} from 'rxjs/operators';
 import {FormGroup, FormBuilder, Validator, Validators, FormControl} from '@angular/forms';
 import { RequestService } from 'src/app/services/request.service';
 import { Router } from '@angular/router';
-import {AppState, selectPatient, selectDoctor} from '../../store';
+import {AppState, selectPatient, selectDoctor, selectactualPatientSearch} from '../../store';
 import {Store, select} from '@ngrx/store';
 import * as fromActions from '../../store/app.actions';
-import { PatientResponse } from 'src/app/models/patient';
+import { PatientResponse, PatientResponseSearch } from 'src/app/models/patient';
 import { DoctorResponse } from 'src/app/models/doctor';
 
 
@@ -24,7 +24,9 @@ export class NavbarComponent implements OnInit {
   faSignOutAlt = faSignOutAlt;
   faSearch = faSearch;
 
-  public username: any = "";
+  public userId: any = "";
+
+  searchValue:any;
 
   public control = new FormControl();
   public form: FormGroup;
@@ -41,24 +43,24 @@ export class NavbarComponent implements OnInit {
 
     this.form = this.formInit();
 
-    this.filteredPatients = this.control.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+    this.filteredPatients = of([]);
     
   }
 
   ngOnInit(): void {
-    this.store.pipe(select(selectPatient)).subscribe(
+    this.store.pipe(select(selectDoctor)).subscribe(
       result =>{ 
-        if(result != undefined){
+        console.log(result);
+        if(result === "undefined"){
           this.SearchBar = false;
         }
       },
       error =>{
 
       }
-    )
+    );
+
+    
   }
 
   onLogout(){
@@ -75,7 +77,17 @@ export class NavbarComponent implements OnInit {
   }
 
   private _filter(value: string): any[] {
-    return [{id:1, value:"diego"},{id:2, value:"maria"},{id:3, value:"marcos"},{id:4, value:"maria"}];
+    console.log(value);
+    this._requestService.getPatientsByUsername(value).subscribe(
+      (result:PatientResponseSearch[]) =>{
+        return result;
+      },
+      error=>{
+        console.log(error);
+        return [];
+      }
+    )
+    return [];
   }
 
 
@@ -85,12 +97,21 @@ export class NavbarComponent implements OnInit {
   }
 
   onSearch(){
-    console.log(this.form.value);
+   console.log(this.userId);
+    this._router.navigate([`PatientProfile/${this.userId}/Table`]);
+    
+  }
+
+  onKeypress(event:any){
+    this.filteredPatients = this._requestService.getPatientsByUsername(event.target.value);
   }
 
   displayFn(auto:any): string {
-    console.log(auto);
-      return auto ? auto.value : auto;
+      return auto ? auto.usuario : auto;
+  }
+
+  setProject(){
+    this.userId = this.searchValue?.id;
   }
 
 
