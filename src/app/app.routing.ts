@@ -18,15 +18,15 @@ import {CreateDoctorFormComponent} from './componets/create-doctor-form/create-d
 const appRoutes: Routes =[
     {path:'',component:HomePageComponent },
     {path:'Login', component: LoginPageComponent},
-    {path:'DoctorProfile', component: DoctorProfilePageComponent, children:
+    {path:'DoctorProfile/:id', component: DoctorProfilePageComponent, children:
     [
-        {path:'', redirectTo: '/DoctorProfile/Table', pathMatch: 'full'},
+        {path:'', redirectTo: '/DoctorProfile/:id/Table', pathMatch: 'full'},
         {path:'Table', component:ConsultationTableComponent},
         {path:'Add-Consultation', component:AddConsultationFormComponent}
     ]},
-    {path:'PatientProfile', component: PatientProfilePageComponent, children:
+    {path:'PatientProfile/:id', component: PatientProfilePageComponent, children:
     [
-        {path:'', redirectTo: '/PatientProfile/Table', pathMatch: 'full'},
+        {path:'', redirectTo: '/PatientProfile/:id/Table', pathMatch: 'full'},
         {path:'Table', component:ConsultationTableComponent}
     ]},
     {path:'SecretaryProfile', component: SecretaryProfilePageComponent},

@@ -14,4 +14,5 @@ export interface ConsultationRequest {
     descripcion: string;
     fecha: string;
     archivo: string;
+    doctor: number;
 }

@@ -96,10 +96,10 @@
     <div class="form-row">
         <div class="form-group col-md">
             <label>Speciality(s)</label>
-            <select #speciality class="custom-select" (change)="onChange()"
+            <select #speciality class="custom-select"
                     formControlName ="speciality">
-                <option value="" selected disabled>Provincias</option>
-                <option *ngFor="let item of specialities" [ngValue]="item.id">{{item.value}}</option>
+                <option value="" selected disabled>specialities</option>
+                <option *ngFor="let item of specialities" [ngValue]="item.id">{{item.nombre_especialidad}}</option>
             </select>
         </div>
 
@@ -107,8 +107,8 @@
             <label>Sub-Speciality(s)</label>
             <select #subSpeciality class=" custom-select"
                     formControlName ="subSpeciality">
-                <option value="" selected disabled>Provincias</option>
-                <option *ngFor="let item of subSpecialities" [ngValue]="item.id">{{item.value}}</option>
+                <option value="" selected disabled>subSpecialities</option>
+                <option *ngFor="let item of subSpecialities" [ngValue]="item.id">{{item.nombre_sub_especialidad}}</option>
             </select>
         </div>
         

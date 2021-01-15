@@ -7,6 +7,8 @@ import { DialogComponent } from '../dialog/dialog.component';
 import {confirmPassword, idRequired, tutorIdRequired, tutorNameRequired} from '../../Validations/validators';
 
 import * as moment from 'moment';
+import { RequestService } from 'src/app/services/request.service';
+import { PatientRequest } from 'src/app/models/patient';
 
 
 @Component({
@@ -23,7 +25,9 @@ export class CreatePatientFormComponent implements OnInit {
 
   constructor(
     private fb:FormBuilder,
-    private dialog: MatDialog) 
+    private dialog: MatDialog,
+    private _requestService: RequestService
+    ) 
     { 
       this.form = this.formInit();
       this.submited = false;
@@ -43,7 +47,7 @@ export class CreatePatientFormComponent implements OnInit {
       tutorId: new FormControl('',{validators:[ Validators.min(10000000000), Validators.max(99999999999)]}),
       disease: new FormControl('',{validators:[ ]}),
       userName: new FormControl('',{validators:[ Validators.required]}),
-      email: new FormControl('',{validators:[ Validators.required]}),
+      email: new FormControl('',{validators:[]}),
       password: new FormControl('',{validators:[ Validators.required]}),
       confirmPassword: new FormControl('',{validators:[ Validators.required]})
     }, {validators: [confirmPassword, idRequired, tutorNameRequired, tutorIdRequired]});
@@ -57,16 +61,43 @@ export class CreatePatientFormComponent implements OnInit {
 
   OnSubmit(){
     this.submited = true;
-    console.log(this.form?.value);
-    console.log(this.form?.errors);
+    
 
     if(this.form?.invalid){
       const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Error", 
       content:`Missing fields or validation errors!`}, width: '400px'});
       
     }else{
-      const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Saved", 
-      content:`Doctor user was saved!`}, width: '400px'});
+
+      var patient: PatientRequest = {
+        nombre: this.form.value["firstName"],
+        apellidos: this.form.value["lastName"],
+        sexo: this.form.value["sex"],
+        fecha_nacimiento: this.formatDate(this.form.value["birthDate"]),
+        cedula: this.form.value["id"],
+        nombre_tutor: this.form.value["tutorName"],
+        cedula_tutor: this.form.value["tutorId"],
+        username: this.form.value["userName"],
+        password: this.form.value["password"],
+        enfermedades: []
+      }
+
+      console.log(patient);
+
+      this._requestService.savePatient(patient).subscribe(
+        result=>{
+          console.log(result);
+          const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Saved", 
+            content:`Patient user was saved!`}, width: '400px'});
+        },
+        error=>{
+          console.log(error);
+          const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Error", 
+            content:`Server error!`}, width: '400px'});
+
+        }
+      )
+      
       this.submited = false;
     }
   }
@@ -95,6 +126,20 @@ export class CreatePatientFormComponent implements OnInit {
       this.form?.get("tutorName")?.enable();
       this.form?.get("tutorId")?.enable();
     }
+  }
+
+  formatDate(date:Date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
   }
 
 }

@@ -23,19 +23,7 @@ export class AdminProfilePageComponent implements OnInit {
   constructor(
     private _requestService: RequestService
   ) {
-    this._requestService.getPatientById("1").subscribe(
-      (result:PatientResponse)=>{
-        this.patient = result;
-      },
-      error =>{
-        console.log(error);
-      }
-    );
-
-    // axios.get(`https://enigmatic-lowlands-64538.herokuapp.com/patients/1`,{withCredentials: true})
-    //   .then(res => {
-    //     console.log(res);
-    //   })
+    
    
   }
 

@@ -5,6 +5,12 @@ import {startWith, map} from 'rxjs/operators';
 import {FormGroup, FormBuilder, Validator, Validators, FormControl} from '@angular/forms';
 import { RequestService } from 'src/app/services/request.service';
 import { Router } from '@angular/router';
+import {AppState, selectPatient, selectDoctor} from '../../store';
+import {Store, select} from '@ngrx/store';
+import * as fromActions from '../../store/app.actions';
+import { PatientResponse } from 'src/app/models/patient';
+import { DoctorResponse } from 'src/app/models/doctor';
+
 
 
 @Component({
@@ -27,9 +33,11 @@ export class NavbarComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private _requestService: RequestService,
-    private _router:Router
+    private _router:Router,
+    private store: Store<AppState>
+
   ) {
-    this.SearchBar = false;
+    this.SearchBar = true;
 
     this.form = this.formInit();
 
@@ -41,12 +49,23 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.pipe(select(selectPatient)).subscribe(
+      result =>{ 
+        if(result != undefined){
+          this.SearchBar = false;
+        }
+      },
+      error =>{
+
+      }
+    )
   }
 
   onLogout(){
     this._requestService.logout().subscribe(
       result =>{
         console.log(result);
+        this.store.dispatch(fromActions.logoutSucess());
         this._router.navigate(['/Login']);
       },
       error=>{

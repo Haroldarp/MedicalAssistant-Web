@@ -132,6 +132,7 @@
   },
   "defaultProject": "MedicalAssistant-Web",
   "cli": {
-    "analytics": "a36d507e-387b-4564-8d79-934ebdd973c0"
+    "analytics": "a36d507e-387b-4564-8d79-934ebdd973c0",
+    "defaultCollection": "@ngrx/schematics"
   }
 }

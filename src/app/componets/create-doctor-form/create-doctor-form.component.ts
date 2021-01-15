@@ -5,6 +5,9 @@ import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 
 import {confirmPassword} from '../../Validations/validators';
+import { DoctorRequest } from 'src/app/models/doctor';
+import { RequestService } from 'src/app/services/request.service';
+import { SpecialityResponse, SubSpecialityResponse } from 'src/app/models/speciality';
 
 @Component({
   selector: 'app-create-doctor-form',
@@ -19,17 +22,19 @@ export class CreateDoctorFormComponent implements OnInit {
   @ViewChild("speciality") specialityRef:any;
   @ViewChild("subSpeciality") subSpecialityRef:any;
 
-  public specialities: any[];
-  public subSpecialities: any[];
+  public specialities: SpecialityResponse[];
+  public subSpecialities: SubSpecialityResponse[];
   constructor(
     private fb:FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _requestService: RequestService
     ) {
     this.form = this.formInit();
     this.submited = false;
 
-    this.specialities = [{id:1,value:"cirugia"},{id:2,value:"odontologia"}]
-    this.subSpecialities = [{id:1,value:"cirugia plastica"},{id:2,value:"dento"}]
+    this.specialities = []
+    this.subSpecialities = []
+    this.getSpeciality();
   }
 
   ngOnInit(): void {
@@ -46,7 +51,7 @@ export class CreateDoctorFormComponent implements OnInit {
       speciality: new FormControl('',{validators:[]}),
       subSpeciality: new FormControl('',{validators:[ ]}),
       userName: new FormControl('',{validators:[ Validators.required]}),
-      email: new FormControl('',{validators:[ Validators.required]}),
+      email: new FormControl('',{validators:[]}),
       password: new FormControl('',{validators:[ Validators.required]}),
       confirmPassword: new FormControl('',{validators:[ Validators.required]})
     }, {validators: confirmPassword });
@@ -56,24 +61,76 @@ export class CreateDoctorFormComponent implements OnInit {
   OnSubmit(){
     this.submited = true;
     console.log(this.form.value);
+    
 
     if(this.form.invalid){
       const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Error", 
       content:`Missing fields or validation errors!`}, width: '400px'});
 
     }else{
-      const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Saved", 
+
+      const {firstName, lastName, sex, birthDate, id, speciality, subSpeciality, userName, password} = this.form.value;
+
+      var doctor:DoctorRequest = {nombre: firstName, apellidos: lastName, sexo: sex, fecha_nacimiento: this.formatDate(birthDate),
+      cedula:id, especialidad: speciality, sub_especialidad: subSpeciality, username: userName, password: password} ;
+
+      console.log(doctor);
+
+      this._requestService.saveDoctor(doctor).subscribe(
+        result =>{
+          console.log(result);
+          const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Saved", 
               content:`Doctor user was saved!`}, width: '400px'});
+        },
+        error =>{
+          console.log(error);
+          const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Error", 
+              content:`Server error!`}, width: '400px'});
+        }
+      );
+
       this.submited = false;
     }
+  }
+
+  getSpeciality(){
+    this._requestService.getSpecialities().subscribe(
+      (result:SpecialityResponse[])=>{
+        this.specialities = result;
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+
+    this._requestService.getSubSpecialities().subscribe(
+      (result:SubSpecialityResponse[])=>{
+        this.subSpecialities = result;
+      },
+      error=>{
+        console.log(error);
+      }
+    );
   }
 
   OnCancel(){
     this.form = this.formInit();
   }
 
-  onChange(){
-    
+  formatDate(date:Date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
   }
+
+  
 
 }

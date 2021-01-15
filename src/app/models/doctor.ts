@@ -1,14 +1,14 @@
 export interface DoctorResponse {
-    id: number;
-    tipo_usuario: number;
-    nombre: string;
-    apellidos: string;
-    username: string;
-    sexo: string;
-    fecha_nacimiento: string;
-    cedula: string;
-    especialidad: number;
-    sub_especialidad: number;
+    id?: number;
+    tipo_usuario?: number;
+    nombre?: string;
+    apellidos?: string;
+    username?: string;
+    sexo?: string;
+    fecha_nacimiento?: string;
+    cedula?: string;
+    especialidad?: number;
+    sub_especialidad?: number;
 }
 
 export interface DoctorRequest {

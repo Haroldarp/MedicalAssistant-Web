@@ -10,6 +10,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { MaterialModule} from './material.module';
 
+import { CookieService } from 'ngx-cookie-service';
+
 import { LoginPageComponent } from './componets/login-page/login-page.component';
 import { NavbarComponent } from './componets/navbar/navbar.component';
 import { DoctorProfilePageComponent } from './componets/doctor-profile-page/doctor-profile-page.component';
@@ -22,6 +24,11 @@ import { HomePageComponent } from './componets/home-page/home-page.component';
 import { DialogComponent } from './componets/dialog/dialog.component';
 import { ConsultationTableComponent } from './componets/consultation-table/consultation-table.component';
 import { AddConsultationFormComponent } from './componets/add-consultation-form/add-consultation-form.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { reducers, metaReducers } from './reducers';
+import * as fromUserState from './store';
 
 
 @NgModule({
@@ -48,10 +55,21 @@ import { AddConsultationFormComponent } from './componets/add-consultation-form/
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot(reducers, {
+      metaReducers, 
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      }
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreModule.forFeature(fromUserState.appStateFeatureKey, fromUserState.reducers, { metaReducers: fromUserState.metaReducers })
   ],
   entryComponents: [DialogComponent],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

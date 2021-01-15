@@ -4,15 +4,15 @@ export class TableInfo{
     public description:string;
     public related:string;
     public archiveLink:string;
-    public date:string;
+    public date:Date;
 
-    constructor(json:any){
+    constructor(json:any, doctor: boolean){
         this.id = json["id"];
-        this.title = json["title"];
-        this.description = json["description"]
-        this.related = json["patient"] ?? json["doctor"];
-        this.archiveLink = json["archiveLink"];
-        this.date = json["date"];
+        this.title = json["titulo"];
+        this.description = json["descripcion"]
+        this.related = doctor? json["paciente"] : json["doctor"];
+        this.archiveLink = json["archivo"];
+        this.date = new Date( json["fecha"]);
     }
 
 }

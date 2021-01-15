@@ -3,6 +3,12 @@ import {FormGroup, FormBuilder, Validator, Validators, FormControl} from '@angul
 
 import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { RequestService } from 'src/app/services/request.service';
+import { ConsultationRequest } from 'src/app/models/consultation';
+
+import {AppState, selectPatient, selectDoctor} from '../../store';
+import {Store, select} from '@ngrx/store';
+import * as fromActions from '../../store/app.actions';
 
 @Component({
   selector: 'app-add-consultation-form',
@@ -15,13 +21,26 @@ export class AddConsultationFormComponent implements OnInit {
   public submited: boolean;
   public fileName:string ;
 
+  public doctorId: any;
+
   constructor(
     private fb:FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _requestService: RequestService,
+    private store: Store<AppState>
+
   ) { 
     this.form = this.formInit();
     this.submited = false;
     this.fileName = "Choose file";
+
+    this.store.pipe(select(selectDoctor)).subscribe(
+      result =>{ 
+        console.log("desde consultation")
+        console.log(result);
+        this.doctorId = result?.id;
+      }
+    )
   }
 
   ngOnInit(): void {
@@ -47,8 +66,24 @@ export class AddConsultationFormComponent implements OnInit {
       content:`Missing fields or validation errors!`}, width: '400px'});
 
     }else{
-      const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Saved", 
-              content:`Consultation was saved!`}, width: '400px'});
+      const {title, description, patient, file} = this.form.value;
+      var consultation: ConsultationRequest = {titulo: title, descripcion:description, 
+        paciente: patient, archivo: file, fecha: this.formatDate(new Date()), doctor: this.doctorId};
+
+
+      this._requestService.saveConsultation(consultation).subscribe(
+        result =>{
+          console.log(result);
+          const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Saved", 
+          content:`Consultation was saved!`}, width: '400px'});
+        },
+        error =>{
+          console.log(error);
+          const dialogRef = this.dialog.open(DialogComponent, {data: {title: "Error", 
+          content:`Server error!`}, width: '400px'});
+        }
+      )
+     
       this.submited = false;
     }
   }
@@ -64,15 +99,7 @@ export class AddConsultationFormComponent implements OnInit {
     if(event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       this.fileName = file.name;
-      // this.form.patchValue({
-      //       file: file
-      // });
       
-      // console.log("yes");
-      // console.log(file.name);
-      
-      // console.log(file);
-      // console.log(event.target.files[0]);
       
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -82,5 +109,20 @@ export class AddConsultationFormComponent implements OnInit {
       };
     }
   }
+
+  formatDate(date:Date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
+  
 
 }

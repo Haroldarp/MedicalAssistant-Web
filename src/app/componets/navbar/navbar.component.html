@@ -11,7 +11,8 @@
       <div class="navbar-nav w-100">
 
         <form class=" mx-auto w-50" 
-        (ngSubmit)="onSearch()" [formGroup]="form">
+        (ngSubmit)="onSearch()" [formGroup]="form"
+        *ngIf="this.SearchBar">
 
           <div class="input-search d-flex w-100">
             <input *ngIf="SearchBar" type="text" class="form-control" placeholder="Search" 

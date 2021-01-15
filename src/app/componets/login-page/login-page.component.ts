@@ -26,33 +26,6 @@ export class LoginPageComponent implements OnInit {
   ) {
       this.form = this.formInit();
       this.submited = false;
-
-      // this._requestService.getPatientById("1").subscribe(
-      //   (result:PatientResponse)=>{
-      //     console.log(result);
-      //   },
-      //   error =>{
-      //     console.log(error);
-      //   }
-      // );
-
-      // this._requestService.logout().subscribe(
-      //   result=>{
-      //     console.log(result);
-      //   },
-      //   error =>{
-      //     console.log(error);
-      //   }
-      // );
-
-      // const Http = new XMLHttpRequest();
-      // const url='https://enigmatic-lowlands-64538.herokuapp.com/patients/1';
-      // Http.open("GET", url);
-      // Http.send();
-
-      // Http.onreadystatechange = (e) => {
-      //   console.log(Http.responseText)
-      // }
    }
 
   ngOnInit(): void {
@@ -76,11 +49,12 @@ export class LoginPageComponent implements OnInit {
         result =>{
           switch (result["tipo_usuario"]) {
             case 4:
-              this._router.navigate(['/DoctorProfile/Table']);
+              this._router.navigate([`/DoctorProfile/${result["id"]}/Table`]);
               break;
 
             case 3:
-              this._router.navigate(['/PatientProfile/Table']);
+              console.log(result);
+              this._router.navigate([`/PatientProfile/${result["id"]}/Table`]);
               break;
 
             case 1:

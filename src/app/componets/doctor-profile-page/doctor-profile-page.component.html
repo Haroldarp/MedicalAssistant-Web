@@ -3,21 +3,21 @@
     <div class="d-flex flex-column align-items-center h-100 py-3 px-3 sidebar">
         <img src="../../../assets/images/defaultImage.png" width="150px" height="150px">
         <div class="d-flex flex-column align-items-start" style="width: 150px;">
-            <p class="mt-2"><span class="font-weight-bold">Name: </span>Nombre</p>
-            <p class="mt-2"><span class="font-weight-bold">Age: </span>Edad</p>
-            <p class="mt-2"><span class="font-weight-bold">Speciality: </span>especialidad</p>
-            <p class="mt-2"><span class="font-weight-bold">Sub-Speciality: </span>Sub-especialidad</p>
+            <p class="mt-2"><span class="font-weight-bold">Name: </span>{{doctor.nombre}} {{doctor.apellidos}}</p>
+            <p class="mt-2"><span class="font-weight-bold">Birthdate: </span>{{doctor.fecha_nacimiento}}</p>
+            <p class="mt-2"><span class="font-weight-bold">Speciality: </span>{{doctor.especialidad}}</p>
+            <p class="mt-2"><span class="font-weight-bold">Sub-Speciality: </span>{{doctor.sub_especialidad}}</p>
         </div>
     </div>
     <div class="d-flex flex-column align-items-center px-5 py-5 content">
         <div class="d-flex mb-4">
-            <a class="custom-link" [routerLink]="['/DoctorProfile/Table']">
+            <a class="custom-link" [routerLink]="['/DoctorProfile',doctor.id,'Table']">
                 <div class="d-flex mx-2">
                     <fa-icon [icon]="faTable" class="mx-2"></fa-icon>
                     <p>Table</p>
                 </div>
             </a>
-            <a class="custom-link" [routerLink]="['/DoctorProfile/Add-Consultation']">
+            <a class="custom-link" [routerLink]="['/DoctorProfile',doctor.id,'Add-Consultation']">
                 <div class="d-flex mx-2">
                     <fa-icon [icon]="faPlus" class="mx-2"></fa-icon>
                     <p>Add consultation</p>
